@@ -7,6 +7,7 @@
  */
 
 // tampon de flux stocké en mémoire
+//changement
 ob_start();
 $titre="RentASnow - Accueil";
 ?>
