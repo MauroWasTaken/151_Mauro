@@ -8,3 +8,8 @@
  *                  [add $logName in function setFullPath]
  * Git source  :    [link]
  */
+
+function sendHome(){
+    require "view/home.php";
+}
+?>
