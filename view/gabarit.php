@@ -5,6 +5,7 @@
  * Date: 08.05.2017
  * Time: 09:16
  */
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -72,14 +73,25 @@
             <div class="nav-collapse collapse">
               <ul class="nav nav-pills ddmenu">
                   <li><a href="index.php?action=home">Home</a></li>
-                  <li><a href="index.php?action=login">Login</a></li>
+                  <li><a href="index.php?action=snows">Snows</a></li>
+                  <?php
+                  if(isset($_SESSION["Username"])){
+                      echo"<li><a href=\"index.php?action=logout\">Logout</a></li>";
+                  }else{
+                      echo"<li><a href=\"index.php?action=login\">Login</a></li>";
+                  }
+                  ?>
               </ul>
             </div>
           </div>
         </div>
       </div>
     </div>
-
+      <?php
+      if(isset($_Session["Username"])){
+          echo"Bonjour ".$_Session["Username"];
+      }
+      ?>
     <div class="row-fluid">
       <div class="span12">
           <!-- ________ SLIDER_____________-->
