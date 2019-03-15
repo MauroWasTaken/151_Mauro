@@ -23,10 +23,10 @@ function isLoginCorrect($userEmailAddress, $userPassword)
     {
         $userHashedPassword = $queryResult[0]["userPsw"];
 
-        //$isLoginCorrect = password_verify($userPassword, $userHashedPassword);
-        if($userPassword==$userHashedPassword){
-            $isLoginCorrect=true;
-        }
+        $isLoginCorrect = password_verify($userPassword, $userHashedPassword);
+        //if($userPassword==$userHashedPassword){
+          //  $isLoginCorrect=true;
+        //}
     }
 
     return $isLoginCorrect;
@@ -45,7 +45,10 @@ function isRegisterCorrect($userEmailAddress, $userPassword)
     if(count($queryResult) == 0)
     {
 
-
+        $userHashedPassword = password_hash ( $userPassword,PASSWORD_DEFAULT);
+        $insertionQuery="INSERT INTO users(userEmailAddress,userPsw) VALUES('".$userEmailAddress."','".$userHashedPassword."');";
+        executeQuery($insertionQuery);
+        $isRegisterCorrect=true;
     }
 
     return $isRegisterCorrect;

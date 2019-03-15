@@ -17,7 +17,7 @@ $titre="RentASnow - Accueil";
             <div class="form-group">
                 <label for="inputPassword">Password</label>
                 <input type="password" class="form-control" id="inputPassword" name="inputUserPassword1" placeholder="Password" required>
-                <label for="inputPassword">Repeat PassWord</label>
+                <label for="inputPassword">Repeat Password</label>
                 <input type="password" class="form-control" id="inputPassword" name="inputUserPassword2" placeholder="Password" required>
             </div>
             <button type="submit" class="btn btn-primary">Register</button>

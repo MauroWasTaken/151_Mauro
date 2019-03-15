@@ -20,11 +20,6 @@ function login($loginRequest)
 
         $userPassword = $loginRequest["inputUserPassword"];
 
-        //$userPassword = password_hash($loginRequest["inputUserPassword"], PASSWORD_DEFAULT);
-
-        //$userPassword = hash("sha256", $loginRequest["inputUserPassword"]);
-        //$userPassword = hash("sha256", $loginRequest["inputUserPassword"]);
-
         require "model/userManagement.php";
         if (isLoginCorrect($userEmail, $userPassword))
         {
@@ -33,8 +28,7 @@ function login($loginRequest)
         }
         else
         {
-            $_SESSION["userEmail"] = "Error logging";
-            $_GET["action"] = "login";
+            $_GET["erreur"] = "Error logging";
             require "view/loginView.php";
         }
 
@@ -70,23 +64,16 @@ function register($registerRequest){
 
             $userPassword = $registerRequest["inputUserPassword1"];
 
-            //$userPassword = password_hash($loginRequest["inputUserPassword"], PASSWORD_DEFAULT);
-
-            //$userPassword = hash("sha256", $loginRequest["inputUserPassword"]);
-            //$userPassword = hash("sha256", $loginRequest["inputUserPassword"]);
-
             require "model/userManagement.php";
             if (isRegisterCorrect($userEmail, $userPassword)) {
                 $_SESSION["userEmail"] = $userEmail;
                 require "view/home.php";
             } else {
-                $_SESSION["userEmail"] = "Error logging";
-                $_GET["action"] = "login";
-                require "view/loginView.php";
+                $_GET["error"] = "Error logging";
+                require "view/register.php";
             }
         } else {
-            $_GET["action"] = "login";
-            require "view/loginView.php";
+            require "view/register.php";
         }
     }
 }
