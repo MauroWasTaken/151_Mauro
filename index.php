@@ -9,14 +9,20 @@ if (isset($_GET['action'])) {
         case "snows":
             require "view/snows.php";
             break;
-        case "login":
+        case "openLogin":
             require "view/loginView.php";
             break;
-        case 'register' :
+        case 'login' :
             login($_POST);
             break;
         case "logout":
             logout();
+            break;
+        case "openRegister":
+            require "view/register.php";
+            break;
+        case "register":
+            register($_POST);
             break;
         default :
             sendHome();

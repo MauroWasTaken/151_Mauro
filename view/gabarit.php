@@ -75,10 +75,12 @@
                   <li><a href="index.php?action=home">Home</a></li>
                   <li><a href="index.php?action=snows">Snows</a></li>
                   <?php
-                  if(isset($_SESSION["Username"])){
+                  if(isset($_SESSION["userEmail"])||isset($_SESSION["userEmail"])){
                       echo"<li><a href=\"index.php?action=logout\">Logout</a></li>";
                   }else{
-                      echo"<li><a href=\"index.php?action=login\">Login</a></li>";
+                      echo"<li><a href=\"index.php?action=openLogin\">Login</a></li>";
+                      echo"<li><a href=\"index.php?action=openRegister\">Register</a></li>";
+
                   }
                   ?>
               </ul>
@@ -88,9 +90,9 @@
       </div>
     </div>
       <?php
-      if(isset($_Session["Username"])){
-          echo"Bonjour ".$_Session["Username"];
-      }
+          if(isset($_SESSION["userEmail"])) {
+              echo "<H6>Bienvenue " . $_SESSION["userEmail"] . "</H6>";
+          }
       ?>
     <div class="row-fluid">
       <div class="span12">
