@@ -46,16 +46,18 @@ function logout(){
     sendHome();
 }
 function fillSnows(){
-    $temptab="";
+    require "model/userManagement.php";
+    $snowList="";
     $tableau=getSnows();
     foreach($tableau as $snow){
-        $temptab=$temptab . "<tr>";
+        $snowList=$snowList . "<tr>";
         foreach($snow as $data){
-            $temptab="<th>".$temptab ."</th>";
+            $snowList="<th>".$data ."</th>";
         }
-        $temptab=$temptab . "</tr>";
+        $snowList=$snowList . "</tr>";
     }
-    return $temptab;
+    require "view/snows.php";
+
 }
 function register($registerRequest){
     if(isset($registerRequest["inputUserEmailAddress"]) && isset($registerRequest["inputUserPassword1"])&&isset($registerRequest["inputUserPassword2"])) {

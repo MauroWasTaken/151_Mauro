@@ -1,4 +1,5 @@
 <?php
+//ctr+alt+t pour créer des regions
 if(!isset($_SESSION)){
     session_start();
 }
@@ -7,7 +8,7 @@ if (isset($_GET['action'])) {
     $action = $_GET['action'];
     switch ($action) {
         case "snows":
-            require "view/snows.php";
+            fillSnows();
             break;
         case "openLogin":
             require "view/loginView.php";

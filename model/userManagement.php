@@ -53,3 +53,11 @@ function isRegisterCorrect($userEmailAddress, $userPassword)
 
     return $isRegisterCorrect;
 }
+function getSnows()
+{
+    require "model/dbConnector.php";
+    $snowList = null;
+    $snowQuery = "SELECT Code,Marque,Modèle,Longueur,Prix,Disponiblité FROM snowboards";
+    $snowList = executeQuery($snowQuery);
+    return $snowList;
+}

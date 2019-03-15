@@ -5,7 +5,6 @@
  * Date: 08.03.2019
  * Time: 10:30
  */
-require 'index.php';
 ob_start();
 $titre="RentASnow - Accueil";
 ?>
@@ -19,7 +18,7 @@ $titre="RentASnow - Accueil";
         <th>Disponiblité</th>
         <th>Photo</th>
     </tr>
-    <?php print fillSnows(); ?>
+    <?php print $snowList ?>
 </table>
 <?php
 $contenu = ob_get_clean();
