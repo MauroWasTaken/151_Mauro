@@ -57,7 +57,7 @@ function getSnows()
 {
     require "model/dbConnector.php";
     $snowList = null;
-    $snowQuery = "SELECT Code,Marque,Modèle,Longueur,Prix,Disponiblité FROM snowboards";
+    $snowQuery = "SELECT Code,Brand,model,length,price,qtyAvailable FROM snowboards";
     $snowList = executeQuery($snowQuery);
     return $snowList;
 }

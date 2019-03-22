@@ -28,7 +28,6 @@ function login($loginRequest)
         }
         else
         {
-            $_GET["erreur"] = "Error logging";
             require "view/loginView.php";
         }
 
@@ -51,9 +50,7 @@ function fillSnows(){
     $tableau=getSnows();
     foreach($tableau as $snow){
         $snowList=$snowList . "<tr>";
-        foreach($snow as $data){
-            $snowList="<th>".$data ."</th>";
-        }
+            $snowList=$snowList."<th>".$snow[0] ."</th><th>".$snow[1] ."</th><th>".$snow[2] ."</th><th>".$snow[3] ."</th><th>".$snow[4] ."</th><th>".$snow[5] ."</th><th><img height='100' src='".$snow[0]."'.jpg</th>";
         $snowList=$snowList . "</tr>";
     }
     require "view/snows.php";
