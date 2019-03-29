@@ -80,7 +80,6 @@
                   }else{
                       echo"<li><a href=\"index.php?action=openLogin\">Login</a></li>";
                       echo"<li><a href=\"index.php?action=openRegister\">Register</a></li>";
-
                   }
                   ?>
               </ul>

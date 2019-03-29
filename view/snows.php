@@ -7,20 +7,8 @@
  */
 ob_start();
 $titre="RentASnow - Accueil";
-?>
-<table class="table textcolor">
-    <tr>
-        <th>Code</th>
-        <th>Marque</th>
-        <th>Modèle</th>
-        <th>Longueur</th>
-        <th>Prix</th>
-        <th>Disponiblité</th>
-        <th>Photo</th>
-    </tr>
-    <?php print $snowList ?>
-</table>
-<?php
+
+ print $snowList;
 $contenu = ob_get_clean();
 require "gabarit.php";
 ?>

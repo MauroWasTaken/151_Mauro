@@ -3,6 +3,10 @@
 if(!isset($_SESSION)){
     session_start();
 }
+if(!isset($_SESSION["userType"])){
+    $_SESSION["userType"]=0;
+}
+
 require 'controler/controler.php';
 if (isset($_GET['action'])) {
     $action = $_GET['action'];

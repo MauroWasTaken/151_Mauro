@@ -24,6 +24,8 @@ function login($loginRequest)
         if (isLoginCorrect($userEmail, $userPassword))
         {
             $_SESSION["userEmail"] = $userEmail;
+            $_SESSION["userType"]=getUserType($userEmail)[0][0];
+            $_GET["action"] = "home";
             require "view/home.php";
         }
         else
@@ -42,17 +44,35 @@ function logout(){
     // destroy the session
     $_SESSION=array();
     session_destroy();
+    $_GET["action"] = "home";
     sendHome();
 }
 function fillSnows(){
     require "model/userManagement.php";
-    $snowList="";
+
     $tableau=getSnows();
-    foreach($tableau as $snow){
-        $snowList=$snowList . "<tr>";
-            $snowList=$snowList."<th>".$snow[0] ."</th><th>".$snow[1] ."</th><th>".$snow[2] ."</th><th>".$snow[3] ."</th><th>".$snow[4] ."</th><th>".$snow[5] ."</th><th><img height='100' src='".$snow[0]."'.jpg</th>";
-        $snowList=$snowList . "</tr>";
+    if($_SESSION["userType"]==1 ) {
+        $snowList="<table class=\"table textcolor\"><tr><th>Code</th><th>Marque</th><th>Modèle</th><th>Longueur</th><th>Prix</th><th>Disponiblité</th><th>Photo</th></tr>";
+        foreach ($tableau as $snow) {
+            $snowList = $snowList . "<tr>";
+            $snowList = $snowList . "<th>" . $snow[0] . "</th><th>" . $snow[1] . "</th><th>" . $snow[2] . "</th><th>" . $snow[3] . "</th><th>" . $snow[4] . "</th><th>" . $snow[5] . "</th><th><img src=\"view/images/" . $snow[0] . "_small.jpg\" alt=\"" . $snow[0] . "\"  height:20%></th>";
+            $snowList = $snowList . "</tr>";
+        }
+        $snowList = $snowList."</table>";
+    }else{
+        $snowList="";
+        foreach ($tableau as $snow) {
+            $snowList = $snowList . "<ul class=\"thumbnails\"><li class=\"span3\"><div class=\"thumbnail\">";
+            $snowList = $snowList . "<a href=\"view/images/" . $snow[0] . ".jpg\" target=\"blank\"><img src=\"view/images/" . $snow[0] . "_small.jpg\" alt=\"" . $snow[0] . "\"></a> <div class=\"caption\">";
+            $snowList = $snowList . '<h3><a href="index.php?action=displayASnow&amp;code=' . $snow[0] . '">' . $snow[0] . '</a></h3>';
+            $snowList = $snowList . "<p><strong>Marque :</strong>" . $snow[1] . "</p>";
+            $snowList = $snowList . "<p><strong>Modèle :</strong>" . $snow[2] . "</p>";
+            $snowList = $snowList . "<p><strong>Longueur :</strong>" . $snow[3] . "</p>";
+            $snowList = $snowList . "<p><strong>Prix :</strong> CHF " . $snow[4] . ".- / jour</p>";
+            $snowList = $snowList . "<p><strong>Disponibilité :</strong>" . $snow[5] . "</p></div></div></li>";
+        }
     }
+
     require "view/snows.php";
 
 }
@@ -66,6 +86,8 @@ function register($registerRequest){
             require "model/userManagement.php";
             if (isRegisterCorrect($userEmail, $userPassword)) {
                 $_SESSION["userEmail"] = $userEmail;
+                $_SESSION["userType"]=getUserType($userEmail)[0][0];
+                $_GET["action"] = "home";
                 require "view/home.php";
             } else {
                 $_GET["error"] = "Error logging";

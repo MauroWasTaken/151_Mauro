@@ -6,13 +6,16 @@
  * Time: 14:05
  */
 
+/**
+ * @param $userEmailAddress
+ * @param $userPassword
+ * @return bool
+ */
 function isLoginCorrect($userEmailAddress, $userPassword)
 {
     $isLoginCorrect = false;
 
     $strSep = '\'';
-
-    //$loginQuery = "SELECT pseudo FROM users WHERE userEmailAddress = ".$strSep.$userEmailAddress.$strSep." AND userPassword = ".$strSep.$userPassword.$strSep;
     $loginQuery = "SELECT pseudo, userPsw FROM users WHERE userEmailAddress = ".$strSep.$userEmailAddress.$strSep;
 
     require "model/dbConnector.php";
@@ -24,19 +27,22 @@ function isLoginCorrect($userEmailAddress, $userPassword)
         $userHashedPassword = $queryResult[0]["userPsw"];
 
         $isLoginCorrect = password_verify($userPassword, $userHashedPassword);
-        //if($userPassword==$userHashedPassword){
-          //  $isLoginCorrect=true;
-        //}
     }
 
     return $isLoginCorrect;
 }
+
+/**
+ * @param $userEmailAddress
+ * @param $userPassword
+ * @return bool
+ */
 function isRegisterCorrect($userEmailAddress, $userPassword)
 {
     $isRegisterCorrect = false;
 
     $strSep = '\'';
-    $uniqueQuery = "SELECT pseudo, userPsw FROM users WHERE userEmailAddress = ".$strSep.$userEmailAddress.$strSep;
+    $uniqueQuery = "SELECT pseudo, userPsw, type FROM users WHERE userEmailAddress = ".$strSep.$userEmailAddress.$strSep;
 
     require "model/dbConnector.php";
 
@@ -53,6 +59,10 @@ function isRegisterCorrect($userEmailAddress, $userPassword)
 
     return $isRegisterCorrect;
 }
+
+/**
+ * @return array|null
+ */
 function getSnows()
 {
     require "model/dbConnector.php";
@@ -60,4 +70,16 @@ function getSnows()
     $snowQuery = "SELECT Code,Brand,model,length,price,qtyAvailable FROM snowboards";
     $snowList = executeQuery($snowQuery);
     return $snowList;
+
+}
+
+/**
+ * @param $userEmailAddress
+ * @return array|null
+ */
+function getUserType($userEmailAddress){
+    $strSep = '\'';
+    $loginQuery = "SELECT type FROM users WHERE userEmailAddress = ".$strSep.$userEmailAddress.$strSep;
+    $queryResult = executeQuery($loginQuery);
+    return $queryResult;
 }
