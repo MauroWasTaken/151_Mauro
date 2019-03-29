@@ -78,3 +78,6 @@ Dans PhpStrom
 Dans la base de données
 
 ![imgMySQLResult](imgMySQLResult.PNG)
+
+###Lien vers les test d'acceptation
+https://docs.google.com/spreadsheets/d/1pVv1KY2rQ8yvzV4fI9hOt6GQjwvfCNx7jlC2BeHLIwA/edit?usp=sharing
