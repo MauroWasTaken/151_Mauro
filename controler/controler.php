@@ -69,7 +69,8 @@ function fillSnows(){
             $snowList = $snowList . "<p><strong>Modèle :</strong>" . $snow[2] . "</p>";
             $snowList = $snowList . "<p><strong>Longueur :</strong>" . $snow[3] . "</p>";
             $snowList = $snowList . "<p><strong>Prix :</strong> CHF " . $snow[4] . ".- / jour</p>";
-            $snowList = $snowList . "<p><strong>Disponibilité :</strong>" . $snow[5] . "</p></div></div></li>";
+            $snowList = $snowList . "<p><strong>Disponibilité :</strong>" . $snow[5] . "</p>";
+            $snowList = $snowList . "<p><a href=\"index.php?action=DemanderLoc&code=" . $snow[0] . "\" class=\"btn btn-primary\">Louer ce snow</a></p></div></div></li>";
         }
     }
 
@@ -97,5 +98,17 @@ function register($registerRequest){
             require "view/register.php";
         }
     }
+}
+function demanderLoc($code){
+    require "model/userManagement.php";
+    $snowsResults=array();
+    $snowsResults[count($snowsResults)]=getSnow($code)[0];
+
+    require "view/demandeLoc.php";
+}
+function addOnCart($code,$data){
+    $array=getSnow($code);
+   // inputQuantity
+   // inputDays
 }
 ?>

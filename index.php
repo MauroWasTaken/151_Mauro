@@ -6,7 +6,9 @@ if(!isset($_SESSION)){
 if(!isset($_SESSION["userType"])){
     $_SESSION["userType"]=0;
 }
-
+if(!isset($_SESSION["cart"])){
+    $_SESSION["cart"]=array();
+}
 require 'controler/controler.php';
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
@@ -28,6 +30,15 @@ if (isset($_GET['action'])) {
             break;
         case "register":
             register($_POST);
+            break;
+        case "DemanderLoc":
+            demanderLoc($_GET["code"]);
+            break;
+        case "openPanier":
+            require "view/loginView.php";
+            break;
+        case "updateCart":
+            addOnCart($_GET["code"],$_POST);
             break;
         default :
             sendHome();

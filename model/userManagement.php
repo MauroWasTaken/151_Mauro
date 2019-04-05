@@ -83,3 +83,18 @@ function getUserType($userEmailAddress){
     $queryResult = executeQuery($loginQuery);
     return $queryResult;
 }
+function getSnow($code){
+    $snowList = null;
+    require "model/dbConnector.php";
+    $snowQuery = "SELECT Code,Brand,model,length,price,qtyAvailable FROM snowboards WHERE Code='".$code."'";
+    $snowList = executeQuery($snowQuery);
+    return $snowList;
+}
+function UpdateChart($item,$cart,$qtySnows,$qtyDays){
+    $updatedCart=array();
+    if($cart!=NULL){
+        $updatedCart=$cart;
+    }
+    $newLine=array(["code"] => $item[0],["dateD"] => $qtySnows,["uQty"] => $qtyDays,["uNbD"] => orange);
+    return $updatedCart;
+}
